@@ -10,7 +10,7 @@ class janelaPrincipal(QWidget):
         self.initUI()
         
     def initUI(self):
-        self.setGeometry(0, 20, 1366, 748)
+        self.setGeometry(0, 30, 1366, 738)
         self.setWindowTitle('Janela com ícone')
         self.setWindowIcon(QIcon('world.png'))
         self.show()
