@@ -13,6 +13,9 @@ class sensorWeb():
         self.w = self.observation.get_weather()
         self.temperatura = self.w.get_temperature('celsius')  # {'temp_max': 10.5, 'temp': 9.7, 'temp_min': 9.0} - FORMATO DA BIBLIOTECA
         self.date = pyowm.utils.timeutils.now(timeformat='date')
+
+    def getLocalizacao(self):
+        return self.localizacao
         
     def getTempValor(self): #EXIBE A TEMPERATURA ATUAL DO LOCAL
         self.temperaturaValor = self.temperatura['temp']
