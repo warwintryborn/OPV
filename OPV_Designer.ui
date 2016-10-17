@@ -43,9 +43,9 @@
   <widget class="QLabel" name="label_CAG">
    <property name="geometry">
     <rect>
-     <x>220</x>
+     <x>210</x>
      <y>160</y>
-     <width>1007</width>
+     <width>1111</width>
      <height>581</height>
     </rect>
    </property>
@@ -432,6 +432,16 @@
       </property>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_gray_8">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QLabel" name="label_Estado_7">
       <property name="font">
@@ -447,6 +457,16 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_gray_9">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_Falha_7">
       <property name="font">
@@ -459,6 +479,16 @@
       </property>
       <property name="text">
        <string>Falha</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_gray_7">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
       </property>
      </widget>
     </item>
@@ -489,36 +519,6 @@
       </property>
       <property name="text">
        <string>Remoto</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_gray_8">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_gray_9">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="label_gray_7">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
       </property>
      </widget>
     </item>
@@ -921,7 +921,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Falha VAG02</string>
+    <string>Falha Chiller 02</string>
    </property>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget">
@@ -1436,13 +1436,12 @@
   <zorder>formLayoutWidget_5</zorder>
   <zorder>formLayoutWidget_6</zorder>
   <zorder>formLayoutWidget_7</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
-  <zorder>pushButton_4</zorder>
-  <zorder>label_textTemp_3</zorder>
   <zorder>gridLayoutWidget</zorder>
   <zorder>pushButton_5</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>pushButton_2</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -21,7 +21,7 @@ import time
 
 green_led = 'green_led.png'
 red_led = 'red_led.png'
-grayled = 'gray_led.png'
+gray_led = 'gray_led.png'
 BAG01 = Bomba('Bomba de Água Gelada 01')
 Chiller01 = Chiller('Chiller 01')
 VAG01 = Valvula('Valvula de Água Gelada 01')
@@ -38,6 +38,8 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         self.showMaximized()
         self.pushButton.clicked.connect(self.falhaBAG01)
         self.pushButton_2.clicked.connect(self.falhaBAG02)
+        self.pushButton_3.clicked.connect(self.falhaChiller01)
+        self.pushButton_4.clicked.connect(self.falhaChiller02)
         self.pushButton_5.clicked.connect(self.partidaCAG)
         
         thread1 = threading.Thread(target=self.threadDados)
@@ -46,7 +48,6 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
     def threadDados(self):
         i=1
         while 1:
-            #print('Opa fion')
             sensorSP = sensorWeb('SaoPaulo,br')
             horario = sensorSP.getDate()
             temperatura = sensorSP.getTempValor()
@@ -82,49 +83,100 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         temperatura = sensorSP.getTempValor()
       
         if (temperatura <= 21):
-            #COMANDO BAG01
-            if (BAG01.getFalha() == 0):
-                BAG01.setComando(1)
-                self.changeImage(self.label_gray,green_led)
-            elif (BAG02.getFalha() == 0 and BAG01.getFalha() == 1):
-                BAG02.setComando(1)
-                self.changeImage(self.label_gray_5,green_led) 
-            elif (BAG01.getFalha() == 1 and BAG02.getFalha() == 1):
-                BAGR.setComando(1)
-                self.changeImage(self.label_gray_8,green_led)                
-            #COMANDO CHILLER01
-            self.changeImage(self.label_gray_10,green_led)
-            Chiller01.setComando(1)
-            #COMANDO VAG01
-            self.changeImage(self.label_gray_18,green_led)
-            VAG01.setComando(1)
-        elif (temperatura >= 22):
-            #COMANDO BAG02
-            if (BAG02.getFalha() == 0):
-                BAG02.setComando(1)
-                self.changeImage(self.label_gray_5,green_led)
-            elif (BAG01.getFalha() == 0 and BAG02.getFalha() == 1):
-                BAG01.setComando(1)
-                self.changeImage(self.label_gray,green_led) 
-            elif (BAG01.getFalha() == 1 and BAG02.getFalha() == 1):
-                BAGR.setComando(1)
-                self.changeImage(self.label_gray_8,green_led)     
-            #COMANDO CHILLER02
-            self.changeImage(self.label_gray_14,green_led)
-            Chiller02.setComando(1)
-            #COMANDO VAG02
-            self.changeImage(self.label_gray_21,green_led)
-            VAG02.setComando(1)
 
-##        if (BAG01.getEstado() == 1):
-##            self.changeImage(self.label_gray_2,green_led)
-##        elif (BAG02.getEstado() == 1):
-##            self.changeImage(self.label_gray_6,green_led)
-##        elif (BAG
-##            else:
-##            self.changeImage(self.label_gray_8,green_led)
-##            self.changeImage(self.label_gray_9,green_led)
-##                BAGR.setComando(1)
+            if (Chiller01.getFalha() == 0):
+                #COMANDO DO CHILLER 01
+                Chiller01.setComando(1)
+                self.changeImage(self.label_gray_10,green_led)
+                #COMANDO DA BOMBAS
+                if (BAG01.getFalha() == 0):
+                    BAG01.setComando(1)
+                    self.changeImage(self.label_gray,green_led)
+                elif (BAG01.getFalha() == 1):
+                    BAGR.setComando(1)
+                    self.changeImage(self.label_gray_8,green_led)
+                #COMANDO VAG01
+                VAG01.setComando(1)
+                self.changeImage(self.label_gray_18,green_led)
+            elif (Chiller01.getFalha == 1):
+                #COMANDO DO CHILLER 02
+                Chiller02.setComando(1)
+                self.changeImage(self.label_gray_14,green_led)
+                #COMANDO DAS BOMBAS
+                if (BAG02.getFalha() == 0):
+                    BAG02.setComando(1)
+                    self.changeImage(self.label_gray_5,green_led)
+                elif (BAG02.getFalha() == 1):
+                    BAGR.setComando(1)
+                    self.changeImage(self.label_gray_8,green_led)
+                VAG02.setComando(1)
+                self.changeImage(self.label_gray_21,green_led)
+                
+        elif (temperatura >= 23):
+
+            if (Chiller02.getFalha() == 0):
+                #COMANDO DO CHILLER 02
+                Chiller02.setComando(1)
+                self.changeImage(self.label_gray_14,green_led)
+                #COMANDO DA BOMBAS
+                if (BAG02.getFalha() == 0):
+                    BAG02.setComando(1)
+                    self.changeImage(self.label_gray_5,green_led)
+                elif (BAG02.getFalha() == 1):
+                    BAGR.setComando(1)
+                    self.changeImage(self.label_gray_8,green_led)
+                #COMANDO VAG02
+                VAG02.setComando(1)
+                self.changeImage(self.label_gray_21,green_led)
+            elif (Chiller02.getFalha() == 1):
+                #COMANDO DO CHILLER 01
+                Chiller01.setComando(1)
+                self.changeImage(self.label_gray_10,green_led)
+                #COMANDO DAS BOMBAS
+                if (BAG01.getFalha() == 0):
+                    BAG01.setComando(1)
+                    self.changeImage(self.label_gray,green_led)
+                elif (BAG01.getFalha() == 1):
+                    BAGR.setComando(1)
+                    self.changeImage(self.label_gray_8,green_led)
+                VAG01.setComando(1)
+                self.changeImage(self.label_gray_18,green_led)
+    
+        if (BAG01.getEstado() == 1):
+            self.changeImage(self.label_gray_2,green_led)
+        else:
+            self.changeImage(self.label_gray_2,gray_led)
+
+        if (BAG02.getEstado() == 1):
+            self.changeImage(self.label_gray_6,green_led)
+        else:
+            self.changeImage(self.label_gray_6,gray_led)
+
+        if (BAGR.getEstado() == 1):
+            self.changeImage(self.label_gray_9,green_led)
+        else:
+            self.changeImage(self.label_gray_9,gray_led)
+
+        if (Chiller01.getEstado() == 1):
+            self.changeImage(self.label_gray_11,green_led)
+        else:
+            self.changeImage(self.label_gray_11,gray_led)
+
+        if (Chiller02.getEstado() == 1):
+            self.changeImage(self.label_gray_13,green_led)
+        else:
+            self.changeImage(self.label_gray_13,gray_led)
+
+        if (VAG01.getEstado() == 1):
+            self.changeImage(self.label_gray_16,green_led)
+        else:
+            self.changeImage(self.label_gray_16,gray_led)
+
+        if (VAG02.getEstado() == 1):
+            self.changeImage(self.label_gray_19,green_led)
+        else:
+            self.changeImage(self.label_gray_19,gray_led)
+            
 
     def changeImage(self,label,image):
         label.setText('')
@@ -132,12 +184,20 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         label.setPixmap(picture)
         
     def falhaBAG01(self):
-        self.changeImage(self.label_gray_3,red_led)
         BAG01.setFalha(1)
-
+        self.changeImage(self.label_gray_3,red_led)
+        
     def falhaBAG02(self):
-        self.changeImage(self.label_gray_4,red_led)
         BAG02.setFalha(1)
+        self.changeImage(self.label_gray_4,red_led)
+        
+    def falhaChiller01(self):        
+        Chiller01.setFalha(1)
+        self.changeImage(self.label_gray_12,red_led)
+
+    def falhaChiller02(self):        
+        Chiller02.setFalha(1)
+        self.changeImage(self.label_gray_15,red_led)
         
 def main():
     app = QApplication(sys.argv)
