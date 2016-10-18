@@ -44,9 +44,9 @@
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>160</y>
+     <y>0</y>
      <width>1111</width>
-     <height>581</height>
+     <height>741</height>
     </rect>
    </property>
    <property name="autoFillBackground">
@@ -62,7 +62,7 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>290</x>
      <y>430</y>
      <width>72</width>
      <height>16</height>
@@ -176,9 +176,9 @@
   <widget class="QWidget" name="formLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>420</x>
      <y>270</y>
-     <width>104</width>
+     <width>124</width>
      <height>91</height>
     </rect>
    </property>
@@ -239,7 +239,52 @@
        </font>
       </property>
       <property name="text">
-       <string>L/R</string>
+       <string>M/A</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_gray">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_gray_2">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_gray_3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -254,37 +299,10 @@
        </font>
       </property>
       <property name="text">
-       <string>Remoto</string>
+       <string>Automatico</string>
       </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_gray">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_gray_2">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="label_gray_3">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>gray_led.png</pixmap>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -293,9 +311,9 @@
   <widget class="QWidget" name="formLayoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>420</x>
      <y>450</y>
-     <width>104</width>
+     <width>124</width>
      <height>91</height>
     </rect>
    </property>
@@ -356,7 +374,7 @@
        </font>
       </property>
       <property name="text">
-       <string>L/R</string>
+       <string>M/A</string>
       </property>
      </widget>
     </item>
@@ -371,7 +389,10 @@
        </font>
       </property>
       <property name="text">
-       <string>Remoto</string>
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -383,6 +404,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -392,6 +416,9 @@
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -403,6 +430,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -410,9 +440,9 @@
   <widget class="QWidget" name="formLayoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>430</x>
+     <x>420</x>
      <y>610</y>
-     <width>104</width>
+     <width>124</width>
      <height>91</height>
     </rect>
    </property>
@@ -440,6 +470,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="0">
@@ -465,6 +498,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="2" column="0">
@@ -484,11 +520,20 @@
     </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_gray_7">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string/>
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -503,7 +548,7 @@
        </font>
       </property>
       <property name="text">
-       <string>L/R</string>
+       <string>M/A</string>
       </property>
      </widget>
     </item>
@@ -517,8 +562,17 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="text">
-       <string>Remoto</string>
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -527,10 +581,10 @@
   <widget class="QWidget" name="formLayoutWidget_4">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>770</x>
      <y>350</y>
-     <width>80</width>
-     <height>71</height>
+     <width>124</width>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="text_Chiller01">
@@ -587,6 +641,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -596,6 +653,9 @@
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -607,6 +667,42 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_MA">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>M/A</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="text_MA">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -614,10 +710,10 @@
   <widget class="QWidget" name="formLayoutWidget_5">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>770</x>
      <y>580</y>
-     <width>80</width>
-     <height>71</height>
+     <width>124</width>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="text_Chiller02">
@@ -674,6 +770,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -683,6 +782,9 @@
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -694,6 +796,42 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_MA_2">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>M/A</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="text_MA_2">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
    </layout>
@@ -701,10 +839,10 @@
   <widget class="QWidget" name="formLayoutWidget_6">
    <property name="geometry">
     <rect>
-     <x>960</x>
+     <x>930</x>
      <y>320</y>
-     <width>80</width>
-     <height>71</height>
+     <width>124</width>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="text_VAG01">
@@ -761,6 +899,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -770,6 +911,9 @@
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -781,6 +925,42 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="text_MA_3">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_MA_3">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>M/A</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -788,10 +968,10 @@
   <widget class="QWidget" name="formLayoutWidget_7">
    <property name="geometry">
     <rect>
-     <x>960</x>
-     <y>550</y>
-     <width>80</width>
-     <height>71</height>
+     <x>930</x>
+     <y>560</y>
+     <width>124</width>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="text_VAG02">
@@ -848,6 +1028,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -858,6 +1041,9 @@
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item row="2" column="1">
@@ -867,6 +1053,42 @@
       </property>
       <property name="pixmap">
        <pixmap>gray_led.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="text_MA_4">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Automatico</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_MA_4">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>8</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>M/A</string>
       </property>
      </widget>
     </item>
@@ -1426,6 +1648,19 @@
     <string>Partida da CAG</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>130</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Limpar Tudo</string>
+   </property>
+  </widget>
   <zorder>label_CAG</zorder>
   <zorder>horizontalLayoutWidget</zorder>
   <zorder>horizontalLayoutWidget_2</zorder>
@@ -1442,6 +1677,7 @@
   <zorder>pushButton</zorder>
   <zorder>pushButton_4</zorder>
   <zorder>pushButton_2</zorder>
+  <zorder>pushButton_6</zorder>
  </widget>
  <resources/>
  <connections/>

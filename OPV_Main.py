@@ -10,11 +10,12 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from sensorWeb import *
-from equipamento import *
+from OPV_sensorWeb import *
+from OPV_equipamento import *
 import OPV_Designer,sys
 import threading
 import time
+import sqlite3
 
 
 #VARIAVEIS
@@ -41,11 +42,15 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         self.pushButton_3.clicked.connect(self.falhaChiller01)
         self.pushButton_4.clicked.connect(self.falhaChiller02)
         self.pushButton_5.clicked.connect(self.partidaCAG)
+        self.pushButton_6.clicked.connect(self.releaseAll)
         
-        thread1 = threading.Thread(target=self.threadDados)
+        thread1 = threading.Thread(target=self.threadDados1)
         thread1.start()
 
-    def threadDados(self):
+        thread2 = threading.Thread(target=self.threadDados2)
+        thread2.start()
+
+    def threadDados1(self):
         i=1
         while 1:
             sensorSP = sensorWeb('SaoPaulo,br')
@@ -53,7 +58,7 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             temperatura = sensorSP.getTempValor()
             temperaturaMinima = sensorSP.getTempMin()
             temperaturaMaxima = sensorSP.getTempMax()
-            humidade = sensorSP.getHumidade()
+            humidade = sensorSP.getUmidade()
             localizacao = sensorSP.getLocalizacao()
             dia = sensorSP.getDia()
             mes = sensorSP.getMes()
@@ -77,8 +82,44 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             time.sleep(1)
             i=i+1
             
-    def partidaCAG(self):
+    def threadDados2(self):
+        i=1
+        while 1:
+            conn = sqlite3.connect('dbOPV.db')
+            cursor = conn.cursor()
 
+            #DADOS DA LOCALIZAÇÃO WEB
+            sensorSP = sensorWeb('SaoPaulo,br')
+            horario = sensorSP.getDate()
+            temperatura = sensorSP.getTempValor()
+            temperaturaMinima = sensorSP.getTempMin()
+            temperaturaMaxima = sensorSP.getTempMax()
+            humidade = sensorSP.getUmidade()    
+
+
+            #INSERIR DADOS NA TABELA
+            cursor.execute("""
+            INSERT INTO sensorWeb (localizacao, horario, temperatura, temperaturaMinima, temperaturaMaxima, humidade)
+            VALUES (?, ?, ?, ?, ?, ?)
+            """, ('SaoPaulo,br', horario, temperatura, temperaturaMinima, temperaturaMaxima, humidade))
+
+            conn.commit()
+
+##            print(temperatura)
+##            print(temperaturaMinima)
+##            print(temperaturaMaxima)
+##            print(humidade)
+##            print(horario)
+##
+##            print('DADOS INSERIDOS COM SUCESSO')
+
+            conn.close()
+
+            time.sleep(60)
+            i=i+1
+            
+    def partidaCAG(self):
+        
         sensorSP = sensorWeb('SaoPaulo,br')
         temperatura = sensorSP.getTempValor()
       
@@ -176,28 +217,81 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             self.changeImage(self.label_gray_19,green_led)
         else:
             self.changeImage(self.label_gray_19,gray_led)
-            
 
+          
     def changeImage(self,label,image):
         label.setText('')
         picture = QPixmap(image)
         label.setPixmap(picture)
         
     def falhaBAG01(self):
-        BAG01.setFalha(1)
-        self.changeImage(self.label_gray_3,red_led)
+        if (BAG01.getFalha() == 0):
+            BAG01.setFalha(1)
+            self.changeImage(self.label_gray_3,red_led)
+        else:
+            BAG01.setFalha(0)
+            self.changeImage(self.label_gray_3,gray_led)
         
     def falhaBAG02(self):
-        BAG02.setFalha(1)
-        self.changeImage(self.label_gray_4,red_led)
-        
-    def falhaChiller01(self):        
-        Chiller01.setFalha(1)
-        self.changeImage(self.label_gray_12,red_led)
+        if (BAG02.getFalha() == 0):
+            BAG02.setFalha(1)
+            self.changeImage(self.label_gray_4,red_led)
+        else:
+            BAG02.setFalha(0)
+            self.changeImage(self.label_gray_4,gray_led)
+            
+    def falhaChiller01(self):
+        if (Chiller01.getFalha() == 0):
+            Chiller01.setFalha(1)
+            self.changeImage(self.label_gray_12,red_led)
+        else:
+            Chiller01.setFalha(0)
+            self.changeImage(self.label_gray_12,gray_led)
 
-    def falhaChiller02(self):        
-        Chiller02.setFalha(1)
-        self.changeImage(self.label_gray_15,red_led)
+    def falhaChiller02(self):
+        if (Chiller02.getFalha() == 0):
+            Chiller02.setFalha(1)
+            self.changeImage(self.label_gray_15,red_led)
+        else:
+            Chiller02.setFalha(0)
+            self.changeImage(self.label_gray_15,gray_led)
+
+    def releaseAll(self):
+        BAG01.setComando(0)
+        BAG01.setFalha(0)
+        BAG02.setComando(0)
+        BAG02.setFalha(0)
+        BAGR.setComando(0)
+        BAGR.setFalha(0)
+        Chiller01.setComando(0)
+        Chiller01.setFalha(0)
+        Chiller02.setComando(0)
+        Chiller02.setFalha(0)
+        VAG01.setComando(0)
+        VAG01.setFalha(0)
+        VAG02.setComando(0)
+        VAG02.setFalha(0)
+        self.changeImage(self.label_gray,gray_led)
+        self.changeImage(self.label_gray_2,gray_led)
+        self.changeImage(self.label_gray_3,gray_led)
+        self.changeImage(self.label_gray_4,gray_led)
+        self.changeImage(self.label_gray_5,gray_led)
+        self.changeImage(self.label_gray_6,gray_led)
+        self.changeImage(self.label_gray_7,gray_led)
+        self.changeImage(self.label_gray_8,gray_led)
+        self.changeImage(self.label_gray_9,gray_led)
+        self.changeImage(self.label_gray_10,gray_led)
+        self.changeImage(self.label_gray_11,gray_led)
+        self.changeImage(self.label_gray_12,gray_led)
+        self.changeImage(self.label_gray_13,gray_led)
+        self.changeImage(self.label_gray_14,gray_led)
+        self.changeImage(self.label_gray_15,gray_led)
+        self.changeImage(self.label_gray_16,gray_led)
+        self.changeImage(self.label_gray_17,gray_led)
+        self.changeImage(self.label_gray_18,gray_led)
+        self.changeImage(self.label_gray_19,gray_led)
+        self.changeImage(self.label_gray_20,gray_led)
+        self.changeImage(self.label_gray_21,gray_led)
         
 def main():
     app = QApplication(sys.argv)
@@ -210,6 +304,4 @@ def main():
 if __name__ == '__main__': 
     main()
 
-
-#self.changeImage(self.label_gray_2,red_led)
 #self.label_CAG.hide()

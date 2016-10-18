@@ -29,7 +29,7 @@ class sensorWeb():
         self.temperaturaMin = self.temperatura['temp_min']
         return self.temperaturaMin
         
-    def getHumidade(self): #EXIBE A HUMIDADE DO LOCAL
+    def getUmidade(self): #EXIBE A UMIDADE DO LOCAL
         self.humidade = self.w.get_humidity()
         return self.humidade
 
