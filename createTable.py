@@ -10,12 +10,11 @@ cursor = conn.cursor()
 cursor.execute("""
 CREATE TABLE sensorWeb (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    localizacao VARCHAR(50),
     horario DATETIME,
     temperatura FLOAT,
-    temperaturaMinima FLOAT,
-    temperaturaMaxima FLOAT,
-    humidade INT
+    status TEXT,
+    vento FLOAT,
+    umidade INT
 );
 """)
 

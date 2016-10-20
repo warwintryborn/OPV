@@ -1,3 +1,5 @@
+import time
+
 class Equipamento():
 
     def __init__(self):
@@ -16,15 +18,15 @@ class Equipamento():
 
     def setComando(self, comando):
         self.comando = comando
-        if self.falha == 1:
-            self.estado = 0
-        else:
-            self.estado = self.comando
  
     def setFalha(self, falha):
         self.falha = falha
 
     def getEstado(self):
+        if self.falha == 1:
+            self.estado = 0
+        else:
+            self.estado = self.comando
         return self.estado
 
     def getFalha(self):

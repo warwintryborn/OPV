@@ -1151,8 +1151,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>234</width>
-     <height>151</height>
+     <width>227</width>
+     <height>161</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -1192,7 +1192,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>Temperatura Máxima</string>
+       <string>Status</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1292,7 +1292,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>Temperatura Minima</string>
+       <string>Vento</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1372,7 +1372,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>°C</string>
+       <string>km/h</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1392,27 +1392,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="text">
-       <string>xx</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="label_15">
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>°C</string>
+       <string>xxxxxxxxxxxxxxxxxxx</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -1651,7 +1631,7 @@
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>1030</x>
      <y>130</y>
      <width>171</width>
      <height>23</height>
@@ -1659,6 +1639,45 @@
    </property>
    <property name="text">
     <string>Limpar Tudo</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>130</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comandar Grupo 01</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>130</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Comandar Grupo 02</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>130</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Gráfico</string>
    </property>
   </widget>
   <zorder>label_CAG</zorder>
@@ -1678,6 +1697,9 @@
   <zorder>pushButton_4</zorder>
   <zorder>pushButton_2</zorder>
   <zorder>pushButton_6</zorder>
+  <zorder>pushButton_7</zorder>
+  <zorder>pushButton_8</zorder>
+  <zorder>pushButton_9</zorder>
  </widget>
  <resources/>
  <connections/>
