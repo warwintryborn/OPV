@@ -54,7 +54,6 @@ class sensorWeb():
     def getDia(self): #EXIBE O DIA
         return self.date.strftime("%d")
 
-
 #REFERENCIAS
 #https://github.com/csparpa/pyowm
 #https://github.com/csparpa/pyowm/wiki/Usage-examples

@@ -12,11 +12,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from OPV_sensorWeb import *
 from OPV_equipamento import *
-import OPV_Designer,sys
-import threading
-import time
-import sqlite3
-
+import OPV_Designer, sys, threading, time, sqlite3
+import numpy as np
+import matplotlib.pyplot as plt
 
 #VARIAVEIS
 
@@ -43,10 +41,10 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         self.pushButton_4.clicked.connect(self.falhaChiller02)
         self.pushButton_5.clicked.connect(self.partidaCAG)
         self.pushButton_6.clicked.connect(self.releaseAll)
-        
+        self.ydata = []
         thread1 = threading.Thread(target=self.threadDados1)
         thread1.start()
-
+        self.makeGraph()
         thread2 = threading.Thread(target=self.threadDados2)
         thread2.start()
 
@@ -79,11 +77,49 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             self.label_19.setText(minutos)  #LABEL MINUTOS
             self.label_21.setText(segundos)  #LABEL SEGUNDOS
 
+
             time.sleep(1)
             i=i+1
+
+    def makeGraph(self):
+        plt.ion()
+        conn = sqlite3.connect('dbOPV.db')
+        cursor = conn.cursor()
+        d=cursor.execute("SELECT temperatura FROM sensorWeb").fetchall()
+        for item in d:
+            self.ydata.append(item[0])
+        while len(self.ydata) < 500:
+            self.ydata.insert(0,0.0)
+        #print(self.ydata)
+            
+            
+        conn.close()
+##        self.ax1=plt.axes()
+##        self.line, = plt.plot(self.ydata)
+##        plt.ylim([10,60])
+##        self.loopGraph(self.ydata[49])
+
+##    def loopGraph(self,data=0):
+##                #Max and min values
+##        if self.ydata == []:
+##            self.makeGraph(0)
+##        print(self.ydata)
+##        ymin = float(min(self.ydata))-10
+##        ymax = float(max(self.ydata))+10
+##
+##
+##        self.ydata.append(data)
+##        del self.ydata[0]
+##        self.line.set_xdata(np.arange(len(self.ydata)))
+##
+##        self.line.set_ydata(self.ydata) # update the data
+##        print('DRAW')
+##        plt.draw() # update the plot
+##        plt.pause(0.05)
+##        
+
             
     def threadDados2(self):
-        i=1
         while 1:
             conn = sqlite3.connect('dbOPV.db')
             cursor = conn.cursor()
@@ -115,8 +151,10 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
 
             conn.close()
 
+            #self.loopGraph(temperatura)
             time.sleep(60)
-            i=i+1
+
+ 
             
     def partidaCAG(self):
         
