@@ -37,6 +37,7 @@ class sensorWeb():
         return self.temperaturaMin
 
     def getStatus(self):
+        self.status = self.statusWeb
         if (self.statusWeb == 'clear sky'):
             self.status = 'Céu limpo'
         elif (self.statusWeb == 'few clouds'):

@@ -79,8 +79,7 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
                 if (BAG01.getEstado() == 0):
                     BAG01.setComando(1)
                     self.changeImage(self.label_gray,green_led)
-                    time.sleep(5)
-                    self.changeImage(self.label_gray_2,green_led)
+                    QTimer.singleShot(2500, lambda: self.changeImage(self.label_gray_2,green_led))
                 else:
                     BAG01.setComando(0)
                     self.changeImage(self.label_gray,gray_led)
@@ -183,25 +182,29 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             conn.close()
 
             #self.loopGraph(temperatura)
-            time.sleep(60)
+            time.sleep(0.1)
  
     def makeGraph(self):
-        plt.ion()
-        conn = sqlite3.connect('dbOPV.db')
-        cursor = conn.cursor()
-        d=cursor.execute("SELECT temperatura FROM sensorWeb").fetchall()
-        for item in d:
-            self.ydata.append(item[0])
-        while len(self.ydata) < 150:
-            self.ydata.insert(0,0.0)
-        #print(self.ydata)            
-            
-        conn.close()
-        self.ax1=plt.axes()
-        self.line, = plt.plot(self.ydata)
-        plt.ylim([10,45])
-        self.loopGraph(self.ydata[149])
-
+        try:
+            self.ydata = []
+            plt.ion()
+            conn = sqlite3.connect('dbOPV.db')
+            cursor = conn.cursor()
+            d=cursor.execute("SELECT temperatura FROM sensorWeb").fetchall()               
+            for item in d:
+                print(item)
+                self.ydata.append(item[0])
+            #while len(self.ydata) < len(d):
+            #    self.ydata.insert(0,0.0)           
+                
+            conn.close()
+            self.ax1=plt.axes()
+            self.line, = plt.plot(self.ydata)
+            plt.ylim([10,45])
+            self.loopGraph(self.ydata[3])
+        except:
+            pass
+        
     def loopGraph(self,data=0):
         #Max and min values
         if self.ydata == []:
@@ -210,7 +213,7 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         ymin = float(min(self.ydata))-10
         ymax = float(max(self.ydata))+10
         
-        self.ydata.append(data)
+        #self.ydata.append(data)
         del self.ydata[0]
         self.line.set_xdata(np.arange(len(self.ydata)))
 
