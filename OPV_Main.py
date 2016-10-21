@@ -61,9 +61,25 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         self.pushButton_7.clicked.connect(self.comandoManual01)
         self.pushButton_8.clicked.connect(self.comandoManual02)
         self.pushButton_9.clicked.connect(self.makeGraph)
+        self.pushButton_10.clicked.connect(self.comandoMnaual)
+        
         manual01 = self.label_gray
         manual01.mouseReleaseEvent = self.manualBAG01
+        manual02 = self.label_gray_10
+        manual02.mouseReleaseEvent = self.manualChiller01
+        manual03 = self.label_gray_18
+        manual03.mouseReleaseEvent = self.manualVAG01
         
+        manual04 = self.label_gray_5
+        manual04.mouseReleaseEvent = self.manualBAG02
+        manual05 = self.label_gray_14
+        manual05.mouseReleaseEvent = self.manualChiller02
+        manual06 = self.label_gray_21
+        manual06.mouseReleaseEvent = self.manualVAG02
+
+        manual07 = self.label_gray_8
+        manual07.mouseReleaseEvent = self.manualBAGR
+                
         self.ydata = []
         
         thread1 = threading.Thread(target=self.threadDados1)
@@ -79,11 +95,83 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
                 if (BAG01.getEstado() == 0):
                     BAG01.setComando(1)
                     self.changeImage(self.label_gray,green_led)
-                    QTimer.singleShot(2500, lambda: self.changeImage(self.label_gray_2,green_led))
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_2,green_led))
                 else:
                     BAG01.setComando(0)
                     self.changeImage(self.label_gray,gray_led)
                     self.changeImage(self.label_gray_2,gray_led)
+                    
+    def manualChiller01(self, event):
+        if (Chiller01.getFalha() == 0):
+            if (Chiller01.getMA() == 'Manual'):
+                if (Chiller01.getEstado() == 0):
+                    Chiller01.setComando(1)
+                    self.changeImage(self.label_gray_10,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_11,green_led))
+                else:
+                    Chiller01.setComando(0)
+                    self.changeImage(self.label_gray_10,gray_led)
+                    self.changeImage(self.label_gray_11,gray_led)
+
+    def manualVAG01(self, event):
+        if (VAG01.getFalha() == 0):
+            if (VAG01.getMA() == 'Manual'):
+                if (VAG01.getEstado() == 0):
+                    VAG01.setComando(1)
+                    self.changeImage(self.label_gray_18,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_16,green_led))
+                else:
+                    VAG01.setComando(0)
+                    self.changeImage(self.label_gray_18,gray_led)
+                    self.changeImage(self.label_gray_16,gray_led)
+
+    def manualBAG02(self, event):
+        if (BAG02.getFalha() == 0):
+            if (BAG02.getMA() == 'Manual'):
+                if (BAG02.getEstado() == 0):
+                    BAG02.setComando(1)
+                    self.changeImage(self.label_gray_5,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_6,green_led))
+                else:
+                    BAG02.setComando(0)
+                    self.changeImage(self.label_gray_5,gray_led)
+                    self.changeImage(self.label_gray_5,gray_led)
+                    
+    def manualChiller02(self, event):
+        if (Chiller02.getFalha() == 0):
+            if (Chiller02.getMA() == 'Manual'):
+                if (Chiller02.getEstado() == 0):
+                    Chiller02.setComando(1)
+                    self.changeImage(self.label_gray_14,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_13,green_led))
+                else:
+                    Chiller02.setComando(0)
+                    self.changeImage(self.label_gray_14,gray_led)
+                    self.changeImage(self.label_gray_13,gray_led)
+
+    def manualVAG02(self, event):
+        if (VAG02.getFalha() == 0):
+            if (VAG02.getMA() == 'Manual'):
+                if (VAG02.getEstado() == 0):
+                    VAG02.setComando(1)
+                    self.changeImage(self.label_gray_21,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_19,green_led))
+                else:
+                    VAG02.setComando(0)
+                    self.changeImage(self.label_gray_21,gray_led)
+                    self.changeImage(self.label_gray_19,gray_led)
+
+    def manualBAGR(self, event):
+        if (BAGR.getFalha() == 0):
+            if (BAGR.getMA() == 'Manual'):
+                if (BAGR.getEstado() == 0):
+                    BAGR.setComando(1)
+                    self.changeImage(self.label_gray_8,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_6,green_led))
+                else:
+                    BAGR.setComando(0)
+                    self.changeImage(self.label_gray_8,gray_led)
+                    self.changeImage(self.label_gray_9,gray_led_led)
 
         
     def comandoManual01(self):
@@ -130,6 +218,57 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         elif (VAG02.getMA() == 'Manual'):
             VAG02.setMA('Automatico')
             self.text_MA_4.setText('Automatico')
+
+    def comandoMnaual(self):
+        if (BAG01.getMA() == 'Automatico'):
+            BAG01.setMA('Manual')
+            self.text_LR.setText('Manual')
+        elif (BAG01.getMA() == 'Manual'):
+            BAG01.setMA('Automatico')
+            self.text_LR.setText('Automatico')
+            
+
+        if (Chiller01.getMA() == 'Automatico'):
+            Chiller01.setMA('Manual')
+            self.text_MA.setText('Manual')
+        elif (Chiller01.getMA() == 'Manual'):
+            Chiller01.setMA('Automatico')
+            self.text_MA.setText('Automatico')
+            
+        if (VAG01.getMA() == 'Automatico'):
+            VAG01.setMA('Manual')
+            self.text_MA_3.setText('Manual')
+        elif (VAG01.getMA() == 'Manual'):
+            VAG01.setMA('Automatico')
+            self.text_MA_3.setText('Automatico')
+
+        if (BAG02.getMA() == 'Automatico'):
+            BAG02.setMA('Manual')
+            self.text_LR_4.setText('Manual')
+        elif (BAG02.getMA() == 'Manual'):
+            BAG02.setMA('Automatico')
+            self.text_LR_4.setText('Automatico')
+            
+        if (Chiller02.getMA() == 'Automatico'):
+            Chiller02.setMA('Manual')
+            self.text_MA_2.setText('Manual')
+        elif (Chiller02.getMA() == 'Manual'):
+            Chiller02.setMA('Automatico')
+            self.text_MA_2.setText('Automatico')
+            
+        if (VAG02.getMA() == 'Automatico'):
+            VAG02.setMA('Manual')
+            self.text_MA_4.setText('Manual')
+        elif (VAG02.getMA() == 'Manual'):
+            VAG02.setMA('Automatico')
+            self.text_MA_4.setText('Automatico')
+
+        if (BAGR.getMA() == 'Automatico'):
+            BAGR.setMA('Manual')
+            self.text_LR_5.setText('Manual')
+        elif (BAGR.getMA() == 'Manual'):
+            BAGR.setMA('Automatico')
+            self.text_LR_5.setText('Automatico')
 
     def threadDados1(self):
         while 1:
@@ -182,7 +321,7 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             conn.close()
 
             #self.loopGraph(temperatura)
-            time.sleep(0.1)
+            time.sleep(60)
  
     def makeGraph(self):
         try:
@@ -190,9 +329,9 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             plt.ion()
             conn = sqlite3.connect('dbOPV.db')
             cursor = conn.cursor()
-            d=cursor.execute("SELECT temperatura FROM sensorWeb").fetchall()               
+            d=cursor.execute("SELECT temperatura FROM sensorWeb ORDER BY horario desc LIMIT 1000").fetchall()               
             for item in d:
-                print(item)
+                #print(item)
                 self.ydata.append(item[0])
             #while len(self.ydata) < len(d):
             #    self.ydata.insert(0,0.0)           
@@ -201,7 +340,7 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
             self.ax1=plt.axes()
             self.line, = plt.plot(self.ydata)
             plt.ylim([10,45])
-            self.loopGraph(self.ydata[3])
+            self.loopGraph(self.ydata[1])
         except:
             pass
         
@@ -228,100 +367,70 @@ class OPV_Window(QWidget, OPV_Designer.Ui_Form):
         temperatura = sensorSP.getTempValor()
       
         if (temperatura <= 21):
-
+            
             if (Chiller01.getFalha() == 0):
-                #COMANDO DO CHILLER 01
-                Chiller01.setComando(1)
-                self.changeImage(self.label_gray_10,green_led)
-                #COMANDO DA BOMBAS
-                if (BAG01.getFalha() == 0):
-                    BAG01.setComando(1)
-                    self.changeImage(self.label_gray,green_led)
-                elif (BAG01.getFalha() == 1):
-                    BAGR.setComando(1)
-                    self.changeImage(self.label_gray_8,green_led)
-                #COMANDO VAG01
                 VAG01.setComando(1)
                 self.changeImage(self.label_gray_18,green_led)
-            elif (Chiller01.getFalha() == 1):
-                #COMANDO DO CHILLER 02
-                Chiller02.setComando(1)
-                self.changeImage(self.label_gray_14,green_led)
-                #COMANDO DAS BOMBAS
-                if (BAG02.getFalha() == 0):
-                    BAG02.setComando(1)
-                    self.changeImage(self.label_gray_5,green_led)
-                elif (BAG02.getFalha() == 1):
+                QTimer.singleShot(2000, lambda: self.changeImage(self.label_gray_16,green_led))
+                if (BAG01.getFalha() == 0):
+                    BAG01.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray,green_led))                   
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_2,green_led))
+                elif (BAG01.getFalha() == 1):
                     BAGR.setComando(1)
-                    self.changeImage(self.label_gray_8,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_8,green_led))
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_9,green_led))
+                Chiller01.setComando(1)
+                QTimer.singleShot(4500, lambda: self.changeImage(self.label_gray_10,green_led))
+                QTimer.singleShot(6000, lambda: self.changeImage(self.label_gray_11,green_led))
+            elif (Chiller01.getFalha() == 1):
                 VAG02.setComando(1)
                 self.changeImage(self.label_gray_21,green_led)
-                
+                QTimer.singleShot(2000, lambda: self.changeImage(self.label_gray_19,green_led))
+                if (BAG02.getFalha() == 0):
+                    BAG02.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_5,green_led))                   
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_6,green_led))
+                elif (BAG02.getFalha() == 1):
+                    BAGR.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_8,green_led))
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_9,green_led))
+                Chiller02.setComando(1)
+                QTimer.singleShot(4500, lambda: self.changeImage(self.label_gray_14,green_led))
+                QTimer.singleShot(6000, lambda: self.changeImage(self.label_gray_13,green_led))
+               
         elif (temperatura >= 23):
 
             if (Chiller02.getFalha() == 0):
-                #COMANDO DO CHILLER 02
-                Chiller02.setComando(1)
-                self.changeImage(self.label_gray_14,green_led)
-                #COMANDO DA BOMBAS
-                if (BAG02.getFalha() == 0):
-                    BAG02.setComando(1)
-                    self.changeImage(self.label_gray_5,green_led)
-                elif (BAG02.getFalha() == 1):
-                    BAGR.setComando(1)
-                    self.changeImage(self.label_gray_8,green_led)
-                #COMANDO VAG02
                 VAG02.setComando(1)
                 self.changeImage(self.label_gray_21,green_led)
-            elif (Chiller02.getFalha() == 1):
-                #COMANDO DO CHILLER 01
-                Chiller01.setComando(1)
-                self.changeImage(self.label_gray_10,green_led)
-                #COMANDO DAS BOMBAS
-                if (BAG01.getFalha() == 0):
-                    BAG01.setComando(1)
-                    self.changeImage(self.label_gray,green_led)
-                elif (BAG01.getFalha() == 1):
+                QTimer.singleShot(2000, lambda: self.changeImage(self.label_gray_19,green_led))
+                if (BAG02.getFalha() == 0):
+                    BAG02.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_5,green_led))                   
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_6,green_led))
+                elif (BAG02.getFalha() == 1):
                     BAGR.setComando(1)
-                    self.changeImage(self.label_gray_8,green_led)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_8,green_led))
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_9,green_led))
+                Chiller02.setComando(1)
+                QTimer.singleShot(4500, lambda: self.changeImage(self.label_gray_14,green_led))
+                QTimer.singleShot(6000, lambda: self.changeImage(self.label_gray_13,green_led))
+            elif (Chiller02.getFalha() == 1):
                 VAG01.setComando(1)
                 self.changeImage(self.label_gray_18,green_led)
-    
-        if (BAG01.getEstado() == 1):
-            self.changeImage(self.label_gray_2,green_led)
-        else:
-            self.changeImage(self.label_gray_2,gray_led)
-
-        if (BAG02.getEstado() == 1):
-            self.changeImage(self.label_gray_6,green_led)
-        else:
-            self.changeImage(self.label_gray_6,gray_led)
-
-        if (BAGR.getEstado() == 1):
-            self.changeImage(self.label_gray_9,green_led)
-        else:
-            self.changeImage(self.label_gray_9,gray_led)
-
-        if (Chiller01.getEstado() == 1):
-            self.changeImage(self.label_gray_11,green_led)
-        else:
-            self.changeImage(self.label_gray_11,gray_led)
-
-        if (Chiller02.getEstado() == 1):
-            self.changeImage(self.label_gray_13,green_led)
-        else:
-            self.changeImage(self.label_gray_13,gray_led)
-
-        if (VAG01.getEstado() == 1):
-            self.changeImage(self.label_gray_16,green_led)
-        else:
-            self.changeImage(self.label_gray_16,gray_led)
-
-        if (VAG02.getEstado() == 1):
-            self.changeImage(self.label_gray_19,green_led)
-        else:
-            self.changeImage(self.label_gray_19,gray_led)
-
+                QTimer.singleShot(2000, lambda: self.changeImage(self.label_gray_16,green_led))
+                if (BAG01.getFalha() == 0):
+                    BAG01.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray,green_led))                   
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_2,green_led))
+                elif (BAG01.getFalha() == 1):
+                    BAGR.setComando(1)
+                    QTimer.singleShot(1500, lambda: self.changeImage(self.label_gray_8,green_led))
+                    QTimer.singleShot(3000, lambda: self.changeImage(self.label_gray_9,green_led))
+                Chiller01.setComando(1)
+                QTimer.singleShot(4500, lambda: self.changeImage(self.label_gray_10,green_led))
+                QTimer.singleShot(6000, lambda: self.changeImage(self.label_gray_11,green_led))
           
     def changeImage(self,label,image):
         label.setText('')
